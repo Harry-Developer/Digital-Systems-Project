@@ -1,0 +1,16 @@
+{
+  "name": "hostwebsite",
+  "version": "1.0.0",
+  "description": "Website for hosting the CTF challenge configurator.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harry Krautschneider",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  }
+}
