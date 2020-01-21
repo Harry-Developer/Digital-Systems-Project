@@ -1,0 +1,55 @@
+.jumbotron {
+    margin: 0;
+}
+
+.about { 
+    height: 450px;
+}
+
+.about > .container >  h1 {
+    margin-top: 50px;
+}
+
+
+.about > .container >  h2 {
+    margin-top: 50px;
+}
+
+.list-group-flush > .list-group-item {
+    border: 0;
+}
+
+.download {
+    height: 330px;
+    background-color: #e9ecef;
+}
+
+.download > .container > h1 {
+    padding: 50px 0px 0px 0px;
+    margin: 0;
+}
+
+.download > .container > .list-group > .list-group-item:hover {
+    background-color:#5789bf;
+    color: #fff;
+    cursor: pointer;
+}
+
+.active-download {
+    background-color:#5789bf;
+    color: #fff;
+    cursor: pointer;
+}
+
+.github {
+    height: 280px;
+}
+
+.github > .container > h1 {
+    padding: 50px 0px 0px 0px;
+    margin: 0;
+}
+
+footer {
+    height: 150px;
+}
