@@ -15,6 +15,15 @@ app.get('/', (req, res) => {
     res.render('pages/index.ejs')
 })
 
+// lazy admin challenge
+app.get('/lazy-admin', (req, res) => {
+    res.render('pages/lazy-admin/lazy-admin.ejs')
+})
+
+app.get('/admin-dashboard', (req, res) => {
+    res.render('pages/lazy-admin/admin-dashboard.ejs')
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
 })
