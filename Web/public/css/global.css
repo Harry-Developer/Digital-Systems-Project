@@ -3,6 +3,16 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
-.card {
-    margin: 10px 0px 10px 0px;
+/* Card Stylings  */
+
+.card { margin: 10px 0px 10px 0px;}
+.input-group-prepend { margin: 15px 0px 0px 0px;}
+
+#submit { color: #fff; }
+#flag-submission { display: none; }
+
+.flag-input {
+    margin: 15px 0px 0px 0px;
+    width: 40%;
+    text-indent: .5em;
 }
