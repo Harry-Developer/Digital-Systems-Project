@@ -16,13 +16,14 @@
     <div class="challenges">
 
         <div class="container">
-
+            
+            <% for(let i = 0; i < totalRows; i++) { %>
             <div class="card" style="width: auto;">
                 <div class="card-body">
-                    <h5 class="card-title"> Lazy Admin </h5>
-                    <small> 5 Points - Easy </small>
-                    <p class="card-text">The credentials are somewhere on the page for this lazy admin. </p>
-                    <a href="/lazy-admin" class="btn btn-primary"> Open </a>
+                    <h5 class="card-title"> <%- name[i].name %> </h5>
+                    <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
+                    <p class="card-text"> <%- desc[i].description %> </p>
+                    <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
                     <a id="submit" class="btn btn-secondary"> Submit Flag </a>
 
 
@@ -37,15 +38,8 @@
                             Something went wrong, please try again!
                         </div>
                     <% } %>
-
-                    <% if (status == 227) { %>
-                        <div class="alert alert-success flag-card-message" role="alert">
-                            Correct, well done!
-                        </div>
-                    <% } %>
                     
-                    
-                    <form action="/" method="POST" id="flag-submission">
+                    <form action="/flag-submit" method="POST" id="flag-submission">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroup-sizing-default"> Flag </span>
@@ -58,6 +52,7 @@
                     </form>
                 </div>
               </div>
+            <% } %>
 
         </div>
 
