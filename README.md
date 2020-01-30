@@ -6,6 +6,7 @@ Final year project for computer science at UWE..
 npm install express
 npm install ejs
 npm install body-parser
+npm install mysql
 ```
 
 ## Required CSS Frameworks 

@@ -1,4 +1,5 @@
 const express = require('express')
+const flag = require('./routes/flag')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
@@ -12,7 +13,11 @@ app.use(express.static(__dirname + '/public'));
 
 // index page
 app.get('/', (req, res) => {
-    res.render('pages/index.ejs')
+    res.render('pages/index.ejs', {status:200})
+})
+
+app.post('/', (req, res) => {
+    flag.submit(req, res)
 })
 
 // lazy admin challenge
