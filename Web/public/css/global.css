@@ -7,6 +7,7 @@ body {
 
 .card { margin: 10px 0px 10px 0px;}
 .input-group-prepend { margin: 15px 0px 0px 0px;}
+.flag-card-message {margin: 10px 0px 0px 0px;}
 
 #submit { color: #fff; }
 #flag-submission { display: none; }

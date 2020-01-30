@@ -25,6 +25,26 @@
                     <a href="/lazy-admin" class="btn btn-primary"> Open </a>
                     <a id="submit" class="btn btn-secondary"> Submit Flag </a>
 
+
+                    <% if (status == 452) { %>
+                        <div class="alert alert-danger flag-card-message" role="alert">
+                            Incorrect Flag!
+                        </div>
+                    <% } %>
+
+                    <% if (status == 400) { %>
+                        <div class="alert alert-danger flag-card-message" role="alert">
+                            Something went wrong, please try again!
+                        </div>
+                    <% } %>
+
+                    <% if (status == 227) { %>
+                        <div class="alert alert-success flag-card-message" role="alert">
+                            Correct, well done!
+                        </div>
+                    <% } %>
+                    
+                    
                     <form action="/" method="POST" id="flag-submission">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">

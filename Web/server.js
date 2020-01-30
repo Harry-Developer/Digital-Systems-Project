@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 // index page
 app.get('/', (req, res) => {
-    res.render('pages/index.ejs')
+    res.render('pages/index.ejs', {status:200})
 })
 
 app.post('/', (req, res) => {

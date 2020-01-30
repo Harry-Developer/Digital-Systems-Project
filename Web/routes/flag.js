@@ -31,13 +31,12 @@ exports.submit = function(req, res) {
         else {
             if(results.length > 0) {
                 console.log('done')
-                res.render('pages/index.ejs', {status:200})
+                res.render('pages/index.ejs', {status:227})
                 res.end()
             }
             else {
-
-                console.log('no result')
-                res.render('pages/index.ejs', {status:200})
+                //452 - Error for wrong input
+                res.render('pages/index.ejs', {status:452})
                 res.end()
                     
             }
