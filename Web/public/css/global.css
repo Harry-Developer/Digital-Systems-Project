@@ -12,9 +12,6 @@ body {
 .input-group-prepend { margin: 15px 0px 0px 0px;}
 .flag-card-message {margin: 10px 0px 0px 0px;}
 
-.submit { color: #fff !important; }
-.flag-submission { display: none; }
-
 .flag-input {
     margin: 15px 0px 0px 0px;
     width: 40%;

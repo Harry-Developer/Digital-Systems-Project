@@ -31,7 +31,7 @@
                     <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
 
                     <% if(completed[i].completed == 0) { %>
-                        <a class="btn btn-secondary submit"> Submit Flag </a>
+                        <a class="btn btn-secondary submit-<%- i %>" style="color: #fff;"> Submit Flag </a>
                     <% } %>
                     
                     <% if (completed[i].completed == 1) { %>
@@ -40,7 +40,7 @@
                         </div>
                     <% } %>
 
-                    <form action="/flag-submit" method="POST" class="flag-submission">
+                    <form action="/flag-submit" method="POST" class="flag-submission-<%- i %>" style="display: none;">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroup-sizing-default"> Flag </span>
@@ -53,20 +53,22 @@
                     </form>
                 </div>
               </div>
+
+              <script>
+    
+                $( ".submit-<%- i %>" ).click(function() {
+                    $( ".flag-submission-<%- i %>" ).toggle( "slow", function() {
+                        // Animation complete.
+                    });
+                });
+                </script>
             <% } %>
 
         </div>
 
     </div>
 
-    <script>
     
-    $( ".submit" ).click(function() {
-        $( ".flag-submission" ).toggle( "slow", function() {
-            // Animation complete.
-        });
-    });
-    </script>
 
     <%- include("../partials/footer.ejs") %>
 
