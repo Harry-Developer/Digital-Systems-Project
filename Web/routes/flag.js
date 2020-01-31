@@ -23,20 +23,30 @@ exports.submit = function(req, res) {
 
     connection.query('SELECT * FROM Flags WHERE flag = ? and challenge = ?', [flag, challenge], function(error, results, fields) {
         if (error) {
-            
             console.log(error)
-            res.render('pages/index.ejs', {status:400})
+            res.redirect('/')
             res.end()
         }
         else {
             if(results.length > 0) {
-                console.log('done')
-                res.render('pages/index.ejs', {status:227})
+
+                connection.query('SELECT * FROM challenges WHERE name = ?', [challenge], function(error, results) {
+                    if (error) { console.log(error) }
+                    else {
+                        connection.query('UPDATE score SET score = score + ?', [results[0].points], function(error, results) {
+                            if (error) { console.log(error) }
+                        })
+
+                        connection.query('UPDATE challenges SET completed = 1 WHERE name = ?', [challenge], function(error, results){
+                            if (error){ console.log(error) }
+                        })
+                    }
+                })
+                res.redirect('/')
                 res.end()
             }
             else {
-                //452 - Error for wrong input
-                res.render('pages/index.ejs', {status:452})
+                res.redirect('/')
                 res.end()
                     
             }

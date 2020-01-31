@@ -17,35 +17,30 @@
 
         <div class="container">
 
+            <!-- Always show first score due to the join on the table -->
+            <div class="scoreboard">
+                <h4> Current Score: <%- score[0].score %> Points </h4>
+            </div>
+            
+            <% for(let i = 0; i < totalRows; i++) { %>
             <div class="card" style="width: auto;">
                 <div class="card-body">
-                    <h5 class="card-title"> Lazy Admin </h5>
-                    <small> 5 Points - Easy </small>
-                    <p class="card-text">The credentials are somewhere on the page for this lazy admin. </p>
-                    <a href="/lazy-admin" class="btn btn-primary"> Open </a>
-                    <a id="submit" class="btn btn-secondary"> Submit Flag </a>
+                    <h5 class="card-title"> <%- name[i].name %> </h5>
+                    <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
+                    <p class="card-text"> <%- desc[i].description %> </p>
+                    <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
 
-
-                    <% if (status == 452) { %>
-                        <div class="alert alert-danger flag-card-message" role="alert">
-                            Incorrect Flag!
-                        </div>
+                    <% if(completed[i].completed == 0) { %>
+                        <a class="btn btn-secondary submit-<%- i %>" style="color: #fff;"> Submit Flag </a>
                     <% } %>
-
-                    <% if (status == 400) { %>
-                        <div class="alert alert-danger flag-card-message" role="alert">
-                            Something went wrong, please try again!
-                        </div>
-                    <% } %>
-
-                    <% if (status == 227) { %>
+                    
+                    <% if (completed[i].completed == 1) { %>
                         <div class="alert alert-success flag-card-message" role="alert">
-                            Correct, well done!
+                            Challenge completed.
                         </div>
                     <% } %>
-                    
-                    
-                    <form action="/" method="POST" id="flag-submission">
+
+                    <form action="/flag-submit" method="POST" class="flag-submission-<%- i %>" style="display: none;">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroup-sizing-default"> Flag </span>
@@ -59,18 +54,21 @@
                 </div>
               </div>
 
+              <script>
+    
+                $( ".submit-<%- i %>" ).click(function() {
+                    $( ".flag-submission-<%- i %>" ).toggle( "slow", function() {
+                        // Animation complete.
+                    });
+                });
+                </script>
+            <% } %>
+
         </div>
 
     </div>
 
-    <script>
     
-    $( "#submit" ).click(function() {
-        $( "#flag-submission" ).toggle( "slow", function() {
-            // Animation complete.
-        });
-    });
-    </script>
 
     <%- include("../partials/footer.ejs") %>
 
