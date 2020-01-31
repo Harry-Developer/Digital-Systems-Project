@@ -29,8 +29,11 @@
                     <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
                     <p class="card-text"> <%- desc[i].description %> </p>
                     <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
-                    <a class="btn btn-secondary submit"> Submit Flag </a>
 
+                    <% if(completed[i].completed == 0) { %>
+                        <a class="btn btn-secondary submit"> Submit Flag </a>
+                    <% } %>
+                    
                     <% if (completed[i].completed == 1) { %>
                         <div class="alert alert-success flag-card-message" role="alert">
                             Challenge completed.
