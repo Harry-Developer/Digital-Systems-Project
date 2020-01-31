@@ -65,6 +65,11 @@ app.get('/admin-dashboard', (req, res) => {
     res.render('pages/lazy-admin/admin-dashboard.ejs')
 })
 
+//Encryption Challenge
+app.get('/encryption', (req, res) => {
+    res.render('pages/encryption/encryption.ejs')
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
 })
