@@ -16,6 +16,11 @@
     <div class="challenges">
 
         <div class="container">
+
+            <!-- Always show first score due to the join on the table -->
+            <div class="scoreboard">
+                <h4> Current Score: <%- score[0].score %> Points </h4>
+            </div>
             
             <% for(let i = 0; i < totalRows; i++) { %>
             <div class="card" style="width: auto;">
@@ -24,22 +29,15 @@
                     <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
                     <p class="card-text"> <%- desc[i].description %> </p>
                     <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
-                    <a id="submit" class="btn btn-secondary"> Submit Flag </a>
+                    <a class="btn btn-secondary submit"> Submit Flag </a>
 
-
-                    <% if (status == 452) { %>
-                        <div class="alert alert-danger flag-card-message" role="alert">
-                            Incorrect Flag!
+                    <% if (completed[i].completed == 1) { %>
+                        <div class="alert alert-success flag-card-message" role="alert">
+                            Challenge completed.
                         </div>
                     <% } %>
 
-                    <% if (status == 400) { %>
-                        <div class="alert alert-danger flag-card-message" role="alert">
-                            Something went wrong, please try again!
-                        </div>
-                    <% } %>
-                    
-                    <form action="/flag-submit" method="POST" id="flag-submission">
+                    <form action="/flag-submit" method="POST" class="flag-submission">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroup-sizing-default"> Flag </span>
@@ -60,8 +58,8 @@
 
     <script>
     
-    $( "#submit" ).click(function() {
-        $( "#flag-submission" ).toggle( "slow", function() {
+    $( ".submit" ).click(function() {
+        $( ".flag-submission" ).toggle( "slow", function() {
             // Animation complete.
         });
     });

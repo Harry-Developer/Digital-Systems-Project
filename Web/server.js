@@ -32,7 +32,7 @@ app.use(express.static(__dirname + '/public'));
 // index page
 app.get('/', (req, res) => {
 
-    connection.query("SELECT * FROM challenges", function(err, rows, fields) {
+    connection.query("SELECT * FROM challenges INNER JOIN Score", function(err, rows, fields) {
        
         if(err){
             console.log(err)
@@ -45,7 +45,8 @@ app.get('/', (req, res) => {
                 points: rows,
                 difficulty: rows,
                 completed: rows,
-                url: rows
+                url: rows,
+                score: rows
             })
         }
     })
