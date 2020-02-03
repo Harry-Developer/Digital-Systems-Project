@@ -28,9 +28,9 @@
                     <h5 class="card-title"> <%- name[i].name %> </h5>
                     <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
                     <p class="card-text"> <%- desc[i].description %> </p>
-                    <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
 
                     <% if(completed[i].completed == 0) { %>
+                        <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
                         <a class="btn btn-secondary submit-<%- i %>" style="color: #fff;"> Submit Flag </a>
                     <% } %>
                     
@@ -46,7 +46,7 @@
                               <span class="input-group-text" id="inputGroup-sizing-default"> Flag </span>
                             </div>
                             <input type="text" name="flag" class="flag-input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                            <input type="text" name="challenge" value="Lazy Admin" hidden>
+                            <input type="text" name="challenge" value="<%- name[i].name %>" hidden>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit Flag">
                         
