@@ -85,6 +85,26 @@ app.get('/encryption', (req, res) => {
     res.render('pages/encryption/encryption.ejs')
 })
 
+app.get('/encryption/enc-dashboard', (req, res) => {
+    if (authenticated)
+        res.render('pages/encryption/enc-dashboard.ejs')
+    else 
+        res.redirect('/')
+})
+
+app.post('/enc-dashboard', (req, res) => {
+    let email = req.body.email
+    let password = req.body.password
+
+    if(email == "admin@securebank.com" && password == "Fluffles") {
+        authenticated = true;
+        res.redirect('/encryption/enc-dashboard')
+    }
+    else {
+        res.redirect('/')
+    }
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
 })
