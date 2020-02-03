@@ -5,6 +5,7 @@ const port = 3000
 const bodyParser = require('body-parser');
 
 var mysql = require('mysql');
+var authenticated = false;
 
 var connection = mysql.createConnection({
     host     : 'localhost',
@@ -31,7 +32,7 @@ app.use(express.static(__dirname + '/public'));
 
 // index page
 app.get('/', (req, res) => {
-
+    authenticated = false;
     connection.query("SELECT * FROM challenges INNER JOIN Score", function(err, rows, fields) {
        
         if(err){
@@ -58,11 +59,25 @@ app.post('/flag-submit', (req, res) => {
 
 // lazy admin challenge
 app.get('/lazy-admin', (req, res) => {
+    authenticated = false;
     res.render('pages/lazy-admin/lazy-admin.ejs')
 })
 
-app.get('/admin-dashboard', (req, res) => {
-    res.render('pages/lazy-admin/admin-dashboard.ejs')
+app.post('/admin-dashboard', (req, res) => {
+    if(req.body.email == "admin@securebank.com" && req.body.password == "Password1") {
+        authenticated = true;
+        res.redirect('lazy-admin/admin-dashboard')
+    }
+    else {
+        res.redirect('lazy-admin')
+    }
+}) 
+
+app.get('/lazy-admin/admin-dashboard', (req, res) => {
+    if (authenticated)
+        res.render('pages/lazy-admin/admin-dashboard.ejs')
+    else 
+        res.redirect('/')
 })
 
 //Encryption Challenge
