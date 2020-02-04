@@ -105,6 +105,24 @@ app.post('/enc-dashboard', (req, res) => {
     }
 })
 
+//XSS-Search Challange 
+app.get('/XSS-Search', (req, res) => {
+
+    connection.query("SELECT * FROM products", function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/XSS-Search/search.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+                price: rows
+            })
+        }
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
 })
