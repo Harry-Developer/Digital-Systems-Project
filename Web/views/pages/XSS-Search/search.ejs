@@ -14,7 +14,13 @@
 
     <div class="container">
         <h1> Techstore </h1>
-        <small> Search our products below: </small>
+        
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline" action="/XSS-Search" method="POST">
+                    <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
 
             <table class="table">
                 <thead>

@@ -123,6 +123,24 @@ app.get('/XSS-Search', (req, res) => {
     })
 })
 
+app.post('/XSS-Search', (req, res) => {
+    keyword = "%" + req.body.keyword + "%";
+
+    connection.query("SELECT * FROM products WHERE name like ?", [keyword], function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/XSS-Search/search.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+                price: rows
+            })
+        }
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
 })
