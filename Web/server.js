@@ -1,5 +1,6 @@
 const express = require('express')
 const flag = require('./routes/flag')
+const login = require('./routes/SQL-Login')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
@@ -103,6 +104,57 @@ app.post('/enc-dashboard', (req, res) => {
     else {
         res.redirect('/')
     }
+})
+
+//XSS-Search Challange 
+app.get('/XSS-Search', (req, res) => {
+
+    connection.query("SELECT * FROM products", function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/XSS-Search/search.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+                price: rows
+            })
+        }
+    })
+})
+
+app.post('/XSS-Search', (req, res) => {
+    keyword = "%" + req.body.keyword + "%";
+
+    connection.query("SELECT * FROM products WHERE name like ?", [keyword], function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/XSS-Search/search.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+                price: rows
+            })
+        }
+    })
+})
+
+// SQL Login
+
+app.get('/SQL-Login', (req, res) => {
+    res.render('pages/SQL-Login/login.ejs')
+})
+
+app.post('/SQL-Login', (req, res) => {
+    console.log(login.submit(req, res)) 
+    
+})
+
+app.get('/SQL-Login/Dashboard', (req, res) => {
+    res.render('pages/SQL-Login/dashboard.ejs')
 })
 
 app.listen(port, () => {

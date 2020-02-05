@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/global.css">
+    <title> Website Name </title>
+</head>
+<body>
+
+    <%- include("../../partials/header.ejs") %>
+
+    <div class="container">
+        <h1> Techstore </h1>
+        
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline" action="/XSS-Search" method="POST">
+                    <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID: </th>  
+                    <th scope="col">Product Name: </th>
+                    <th scope="col">Description: </th>
+                    <th scope="col">price: </th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <!-- Incremented the count on display because humans don't count from zero -->
+                    <% for(let i = 0; i < totalRows; i++) { %>
+                    <tr>
+                        <th scope="row"> <%- i + 1 %> </th>
+                        <td><%- name[i].name %> </td>
+                        <td><%- desc[i].description %> </td>
+                        <td>£<%- price[i].price %> </td>
+                    </tr>
+                    <% } %>
+        
+                </tbody>
+              </table>
+       
+        
+    </div>
+
+   
+   
+    <%- include("../../partials/footer.ejs") %>
+
+</body>
+</html>
