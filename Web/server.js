@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '/public'));
 // index page
 app.get('/', (req, res) => {
     authenticated = false;
-    connection.query("SELECT * FROM challenges INNER JOIN Score", function(err, rows, fields) {
+    connection.query("SELECT * FROM challenges INNER JOIN Score ORDER BY points", function(err, rows, fields) {
        
         if(err){
             console.log(err)
@@ -154,6 +154,14 @@ app.post('/SQL-Login', (req, res) => {
 
 app.get('/SQL-Login/Dashboard', (req, res) => {
     res.render('pages/SQL-Login/dashboard.ejs')
+})
+
+
+
+// Hash 
+
+app.get('/Hash', (req, res) => {
+    res.render('pages/Hash/hash.ejs')
 })
 
 app.listen(port, () => {
