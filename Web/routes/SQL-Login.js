@@ -27,7 +27,7 @@ exports.submit = function(req, res) {
             res.redirect('/')
         }
         else {
-            if(results.length > 0)
+            if(results.length > 0) 
                 res.redirect('/SQL-Login/Dashboard')
             else {
                 console.log('SELECT * FROM logins WHERE email = ' + email + ' and password = ' + password)
