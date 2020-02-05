@@ -149,8 +149,7 @@ app.get('/SQL-Login', (req, res) => {
 })
 
 app.post('/SQL-Login', (req, res) => {
-    console.log(login.submit(req, res)) 
-    
+    login.submit(req, res)
 })
 
 app.get('/SQL-Login/Dashboard', (req, res) => {
