@@ -1,5 +1,6 @@
 const express = require('express')
 const flag = require('./routes/flag')
+const login = require('./routes/SQL-Login')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
@@ -139,6 +140,20 @@ app.post('/XSS-Search', (req, res) => {
             })
         }
     })
+})
+
+// SQL Login
+
+app.get('/SQL-Login', (req, res) => {
+    res.render('pages/SQL-Login/login.ejs')
+})
+
+app.post('/SQL-Login', (req, res) => {
+    login.submit(req, res)
+})
+
+app.get('/SQL-Login/Dashboard', (req, res) => {
+    res.render('pages/SQL-Login/dashboard.ejs')
 })
 
 app.listen(port, () => {
