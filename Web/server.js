@@ -1,6 +1,7 @@
 const express = require('express')
 const flag = require('./routes/flag')
 const login = require('./routes/SQL-Login')
+const bruteforce = require('./routes/bruteforce')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
@@ -156,8 +157,6 @@ app.get('/SQL-Login/Dashboard', (req, res) => {
     res.render('pages/SQL-Login/dashboard.ejs')
 })
 
-
-
 // Hash 
 
 app.get('/Hash', (req, res) => {
@@ -166,6 +165,20 @@ app.get('/Hash', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
+})
+
+//Brute Force 
+
+app.get('/Bruteforce', (req, res) => {
+    res.render('pages/Bruteforce/index.ejs')
+})
+
+app.post('/Bruteforce', (req, res) => {
+    bruteforce.submit(req, res)
+})
+
+app.get('/Bruteforce/Flag', (req, res) => {
+    res.render('pages/Bruteforce/flag.ejs')
 })
 
 // id, name, description, points, difilculty, completed
