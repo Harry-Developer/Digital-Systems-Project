@@ -181,4 +181,15 @@ app.get('/Bruteforce/Flag', (req, res) => {
     res.render('pages/Bruteforce/flag.ejs')
 })
 
+// User Agent Spoof
+
+app.get('/Headers', (req, res) => {
+    let ua = req.get('User-Agent')
+    let ref = req.headers.referer
+    res.render('pages/Headers/index.ejs', {
+        ua: ua,
+        ref: ref
+    })
+})
+
 // id, name, description, points, difilculty, completed
