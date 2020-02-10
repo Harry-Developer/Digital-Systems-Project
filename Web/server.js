@@ -192,4 +192,18 @@ app.get('/Headers', (req, res) => {
     })
 })
 
+// Source Code
+
+app.get('/Source-Code', (req, res) => {
+    res.render('pages/Source Code/index.ejs')
+})
+
+app.get('/Source-Code/about', (req, res) => {
+    res.render('pages/Source Code/about.ejs')
+})
+
+app.get('/Source-Code/contact', (req, res) => {
+    res.render('pages/Source Code/contact.ejs')
+})
+
 // id, name, description, points, difilculty, completed
