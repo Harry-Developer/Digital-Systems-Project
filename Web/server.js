@@ -206,4 +206,14 @@ app.get('/Source-Code/contact', (req, res) => {
     res.render('pages/Source Code/contact.ejs')
 })
 
+// Mr Robot 
+app.get('/Robot', (req, res) => {
+    res.render('pages/Robot/index.ejs')
+})
+
+app.use('/robots.txt', function (req, res, next) {
+    res.type('text/plain')
+    res.send("User-agent: *\nDisallow: /Robot");
+});
+
 // id, name, description, points, difilculty, completed
