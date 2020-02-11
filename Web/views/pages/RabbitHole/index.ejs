@@ -19,12 +19,15 @@
             <h4> Invite Code: </h4>
             <div class="form-group mx-sm mb-2">
                 <label for="code" class="sr-only">Invite Code</label>
-                <input type="text" class="form-control" id="code" placeholder="Code..">
+                <input type="text" class="form-control" name="code" id="code" placeholder="Code..">
             </div>
             <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
         </form>
+
+        <%= flag %>
     </div>
-   
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/invite.js"></script>
     <%- include("../../partials/footer.ejs") %>
 

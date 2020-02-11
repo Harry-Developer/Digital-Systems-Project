@@ -234,7 +234,31 @@ app.post('/Postman', (req, res) => {
 //Rabbit hole
 
 app.get('/RabbitHole', (req, res) => {
-    res.render('pages/rabbithole/index.ejs')
+    res.render('pages/rabbithole/index.ejs', {flag: ""})
+})
+
+app.post('/RabbitHole', (req, res) => {
+    let code = req.body.code;
+
+    if(code == "SUHD-MNSF-SOIJ") {
+        res.render('pages/rabbithole/index.ejs', {flag: "CTF{REQUESTS}"})
+    } else {
+        res.render('pages/rabbithole/index.ejs', {flag: ""})
+    }
+})
+
+app.post('/generate/invite', (req, res) => {
+    res.json({
+        data: "eqzp baef dqcgqef fa /sqzqdmfq/oapq",
+        status: 200
+    })
+})
+
+app.post('/generate/code', (req, res) => {
+    res.json({
+        data: "U1VIRC1NTlNGLVNPSUo=",
+        status: 200
+    })
 })
 
 // id, name, description, points, difilculty, completed
