@@ -14,28 +14,18 @@
     <%- include("../../partials/header.ejs") %>
 
     <div class="container">
-        <div class="website">
-            <div class="navigation">
-                <ul>
-                    <li> <a href="/Source-Code"> Home </a> </li>
-                    <li> <a href="/Source-Code/about"> About </a> </li>
-                    <li> <a href="/Source-Code/contact"> Contact </a> </li>
-                </ul>
+        <form action="/RabbitHole" method="POST">
+            <br>
+            <h4> Invite Code: </h4>
+            <div class="form-group mx-sm mb-2">
+                <label for="code" class="sr-only">Invite Code</label>
+                <input type="text" class="form-control" id="code" placeholder="Code..">
             </div>
-
-            <div class="right-panel"></div>
-            <div class="left-panel">
-                <h3> Home: </h3>
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eligendi 
-                    cum dolorum, eius voluptas ea quod, natus culpa!</p>
-            </div>
-            <div class="footer"></div>
-        </div>
-
-
-        <!-- CTF{BEHIND_ -->
+            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+        </form>
     </div>
    
+    <script src="js/invite.js"></script>
     <%- include("../../partials/footer.ejs") %>
 
 </body>

@@ -216,4 +216,25 @@ app.use('/robots.txt', function (req, res, next) {
     res.send("User-agent: *\nDisallow: /Robot");
 });
 
+app.get('/Postman', (req, res) => {
+    res.render('pages/postman/index.ejs')
+})
+
+app.post('/Postman', (req, res) => {
+    var username = req.param('username')
+    var password = req.param('password')
+
+    if(username == "admin" && password == "SecretAdminPass") {
+        res.send("CTF{WELCOME_TO_HOGWARTS}")
+    } else {
+        res.render('pages/postman/index.ejs')
+    }
+})
+
+//Rabbit hole
+
+app.get('/RabbitHole', (req, res) => {
+    res.render('pages/rabbithole/index.ejs')
+})
+
 // id, name, description, points, difilculty, completed
