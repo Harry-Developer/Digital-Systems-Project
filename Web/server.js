@@ -261,4 +261,35 @@ app.post('/generate/code', (req, res) => {
     })
 })
 
+// SQL Dump 
+
+app.get('/SQL-Dump', (req, res) => {
+
+    res.render('pages/SQL-Dump/index.ejs', {
+        totalRows: 0,
+        name: "",
+        desc: "",
+    })
+
+})
+
+app.post('/SQL-Dump', (req, res) => {
+
+    keyword = req.body.keyword;
+
+    connection.query("SELECT * FROM cakes WHERE name = '" + keyword + "'", function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/SQL-Dump/index.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+            })
+        }
+    })
+    
+})
+
 // id, name, description, points, difilculty, completed
