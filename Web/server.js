@@ -292,4 +292,36 @@ app.post('/SQL-Dump', (req, res) => {
     
 })
 
+
+//Union 
+app.get('/Union', (req, res) => {
+
+    res.render('pages/Union/index.ejs', {
+        totalRows: 0,
+        name: "",
+        desc: "",
+    })
+
+})
+
+app.post('/Union', (req, res) => {
+
+    keyword = req.body.keyword;
+
+    connection.query("SELECT * FROM products WHERE name = '" + keyword + "'", function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/Union/index.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+                price: rows
+            })
+        }
+    })
+    
+})
+
 // id, name, description, points, difilculty, completed
