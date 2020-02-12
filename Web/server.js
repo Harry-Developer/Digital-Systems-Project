@@ -1,6 +1,7 @@
 const express = require('express')
 const flag = require('./routes/flag')
 const login = require('./routes/SQL-Login')
+const bruteforce = require('./routes/bruteforce')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
@@ -34,7 +35,7 @@ app.use(express.static(__dirname + '/public'));
 // index page
 app.get('/', (req, res) => {
     authenticated = false;
-    connection.query("SELECT * FROM challenges INNER JOIN Score", function(err, rows, fields) {
+    connection.query("SELECT * FROM challenges INNER JOIN Score ORDER BY points", function(err, rows, fields) {
        
         if(err){
             console.log(err)
@@ -149,16 +150,146 @@ app.get('/SQL-Login', (req, res) => {
 })
 
 app.post('/SQL-Login', (req, res) => {
-    console.log(login.submit(req, res)) 
-    
+    login.submit(req, res)
 })
 
 app.get('/SQL-Login/Dashboard', (req, res) => {
     res.render('pages/SQL-Login/dashboard.ejs')
 })
 
+// Hash 
+
+app.get('/Hash', (req, res) => {
+    res.render('pages/Hash/hash.ejs')
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
+})
+
+//Brute Force 
+
+app.get('/Bruteforce', (req, res) => {
+    res.render('pages/Bruteforce/index.ejs')
+})
+
+app.post('/Bruteforce', (req, res) => {
+    bruteforce.submit(req, res)
+})
+
+app.get('/Bruteforce/Flag', (req, res) => {
+    res.render('pages/Bruteforce/flag.ejs')
+})
+
+// User Agent Spoof
+
+app.get('/Headers', (req, res) => {
+    let ua = req.get('User-Agent')
+    let ref = req.headers.referer
+    res.render('pages/Headers/index.ejs', {
+        ua: ua,
+        ref: ref
+    })
+})
+
+// Source Code
+
+app.get('/Source-Code', (req, res) => {
+    res.render('pages/Source Code/index.ejs')
+})
+
+app.get('/Source-Code/about', (req, res) => {
+    res.render('pages/Source Code/about.ejs')
+})
+
+app.get('/Source-Code/contact', (req, res) => {
+    res.render('pages/Source Code/contact.ejs')
+})
+
+// Mr Robot 
+app.get('/Robot', (req, res) => {
+    res.render('pages/Robot/index.ejs')
+})
+
+app.use('/robots.txt', function (req, res, next) {
+    res.type('text/plain')
+    res.send("User-agent: *\nDisallow: /Robot");
+});
+
+app.get('/Postman', (req, res) => {
+    res.render('pages/postman/index.ejs')
+})
+
+app.post('/Postman', (req, res) => {
+    var username = req.param('username')
+    var password = req.param('password')
+
+    if(username == "admin" && password == "SecretAdminPass") {
+        res.send("CTF{WELCOME_TO_HOGWARTS}")
+    } else {
+        res.render('pages/postman/index.ejs')
+    }
+})
+
+//Rabbit hole
+
+app.get('/RabbitHole', (req, res) => {
+    res.render('pages/rabbithole/index.ejs', {flag: ""})
+})
+
+app.post('/RabbitHole', (req, res) => {
+    let code = req.body.code;
+
+    if(code == "SUHD-MNSF-SOIJ") {
+        res.render('pages/rabbithole/index.ejs', {flag: "CTF{REQUESTS}"})
+    } else {
+        res.render('pages/rabbithole/index.ejs', {flag: ""})
+    }
+})
+
+app.post('/generate/invite', (req, res) => {
+    res.json({
+        data: "eqzp baef dqcgqef fa /sqzqdmfq/oapq",
+        status: 200
+    })
+})
+
+app.post('/generate/code', (req, res) => {
+    res.json({
+        data: "U1VIRC1NTlNGLVNPSUo=",
+        status: 200
+    })
+})
+
+// SQL Dump 
+
+app.get('/SQL-Dump', (req, res) => {
+
+    res.render('pages/SQL-Dump/index.ejs', {
+        totalRows: 0,
+        name: "",
+        desc: "",
+    })
+
+})
+
+app.post('/SQL-Dump', (req, res) => {
+
+    keyword = req.body.keyword;
+
+    connection.query("SELECT * FROM cakes WHERE name = '" + keyword + "'", function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/SQL-Dump/index.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+            })
+        }
+    })
+    
 })
 
 // id, name, description, points, difilculty, completed
