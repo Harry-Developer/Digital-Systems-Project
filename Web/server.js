@@ -308,7 +308,7 @@ app.post('/Union', (req, res) => {
 
     keyword = req.body.keyword;
 
-    connection.query("SELECT * FROM products WHERE name = '" + keyword + "'", function(err, rows, fields) {
+    connection.query("SELECT * FROM products WHERE id = " + keyword, function(err, rows, fields) {
         if(err) {
             console.log(err)
         }
