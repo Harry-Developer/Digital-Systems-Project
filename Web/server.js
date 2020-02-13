@@ -308,7 +308,7 @@ app.post('/Union', (req, res) => {
 
     keyword = req.body.keyword;
 
-    if(keyword.includes("from flags")) {
+    if(keyword.includes("from flags") || keyword.includes("from cakes")) {
         res.send("Nah, you don't touch that table, go <a href='/Union'> back </a> ")
     }
     
