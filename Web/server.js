@@ -308,6 +308,10 @@ app.post('/Union', (req, res) => {
 
     keyword = req.body.keyword;
 
+    if(keyword.includes("from flags")) {
+        res.send("Nah, you don't touch that table, go <a href='/Union'> back </a> ")
+    }
+    
     connection.query("SELECT * FROM products WHERE id = " + keyword, function(err, rows, fields) {
         if(err) {
             console.log(err)
