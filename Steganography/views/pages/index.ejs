@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title> Website Name </title>
+</head>
+<body>
+
+    <%- include("../partials/header.ejs") %>
+
+    <div class="challenges">
+
+        <div class="container">
+
+            <!-- Always show first score due to the join on the table -->
+            <div class="scoreboard">
+                <h4> Current Score: <%- score[0].score %> Points </h4>
+                <form action="/reset-challenges" method="POST">
+                    <input type="submit" value="Reset Challenges" class="btn btn-primary">
+                </form>
+            </div>
+            <% for(let i = 0; i < totalRows; i++) { %>
+            <div class="card" style="width: auto;">
+                <div class="card-body">
+                    <h5 class="card-title"> <%- name[i].name %> </h5>
+                    <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
+                    <p class="card-text"> <%- desc[i].description %> </p>
+
+                    <% if(completed[i].completed == 0) { %>
+                        <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
+                        <a class="btn btn-secondary submit-<%- i %>" style="color: #fff;"> Submit Flag </a>
+                    <% } %>
+                    
+                    <% if (completed[i].completed == 1) { %>
+                        <div class="alert alert-success flag-card-message" role="alert">
+                            Challenge completed.
+                        </div>
+                    <% } %>
+
+                    <form action="/flag-submit" method="POST" class="flag-submission-<%- i %>" style="display: none;">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default"> Flag </span>
+                            </div>
+                            <input type="text" name="flag" class="flag-input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" name="challenge" value="<%- name[i].name %>" hidden>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Submit Flag">
+                        
+                    </form>
+                </div>
+              </div>
+
+              <script>
+    
+                $( ".submit-<%- i %>" ).click(function() {
+                    $( ".flag-submission-<%- i %>" ).toggle( "slow", function() {
+                        // Animation complete.
+                    });
+                });
+                </script>
+            <% } %>
+
+        </div>
+
+    </div>
+
+    
+
+    <%- include("../partials/footer.ejs") %>
+
+</body>
+</html>
