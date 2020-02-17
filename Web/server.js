@@ -328,4 +328,18 @@ app.post('/Union', (req, res) => {
     
 })
 
+//Reset Challenges 
+
+app.post('/reset-challenges', (req, res) => {
+    connection.query('UPDATE challenges SET completed = 0 WHERE completed = 1', function(error, results){
+        if (error){ console.log(error) }
+    })
+
+    connection.query('UPDATE score SET score = 0', function(error, results) {
+        if (error) { console.log(error) }
+    })
+
+    res.redirect('/')
+ })
+
 // id, name, description, points, difilculty, completed

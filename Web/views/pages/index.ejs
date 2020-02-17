@@ -20,8 +20,10 @@
             <!-- Always show first score due to the join on the table -->
             <div class="scoreboard">
                 <h4> Current Score: <%- score[0].score %> Points </h4>
+                <form action="/reset-challenges" method="POST">
+                    <input type="submit" value="Reset Challenges" class="btn btn-primary">
+                </form>
             </div>
-            
             <% for(let i = 0; i < totalRows; i++) { %>
             <div class="card" style="width: auto;">
                 <div class="card-body">
