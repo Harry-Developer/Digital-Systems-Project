@@ -48,7 +48,8 @@ app.get('/', (req, res) => {
                 difficulty: rows,
                 completed: rows,
                 url: rows,
-                score: rows
+                score: rows,
+                image: rows
             })
         }
     })

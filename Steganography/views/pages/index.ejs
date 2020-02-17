@@ -30,9 +30,9 @@
                     <h5 class="card-title"> <%- name[i].name %> </h5>
                     <small> <%- points[i].points %> Points - <%- difficulty[i].difficulty %> </small>
                     <p class="card-text"> <%- desc[i].description %> </p>
-
+                    <p> <b>Filename:</b> <%- image[i].filename %> </p>
                     <% if(completed[i].completed == 0) { %>
-                        <a href="<%- url[i].url %>" class="btn btn-primary"> Open </a>
+                        <a href="images/<%- image[i].filename %>" class="btn btn-primary"> Download </a>
                         <a class="btn btn-secondary submit-<%- i %>" style="color: #fff;"> Submit Flag </a>
                     <% } %>
                     

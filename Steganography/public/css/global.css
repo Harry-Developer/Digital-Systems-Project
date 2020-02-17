@@ -11,7 +11,7 @@ body {
 .card { 
     display: flex;
     width: 46% !important;
-    height: 290px;
+    height: 330px;
     margin: 10px 40px 10px 0px;
     float: left;
 }
