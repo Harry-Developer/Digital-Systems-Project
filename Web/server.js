@@ -185,7 +185,7 @@ app.get('/Bruteforce/Flag', (req, res) => {
 
 app.get('/Headers', (req, res) => {
     let ua = req.get('User-Agent')
-    let ref = req.headers.referer
+    let ref = req.headers.referer || ''
     res.render('pages/Headers/index.ejs', {
         ua: ua,
         ref: ref
