@@ -8,12 +8,18 @@ body {
 
 /* Card Stylings  */
 
-.card { margin: 10px 0px 10px 0px;}
+.card { 
+    display: flex;
+    width: 46% !important;
+    height: 290px;
+    margin: 10px 40px 10px 0px;
+    float: left;
+}
 .input-group-prepend { margin: 15px 0px 0px 0px;}
 .flag-card-message {margin: 10px 0px 0px 0px;}
 
 .flag-input {
     margin: 15px 0px 0px 0px;
-    width: 40%;
+    width: 80%;
     text-indent: .5em;
 }

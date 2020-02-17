@@ -185,7 +185,7 @@ app.get('/Bruteforce/Flag', (req, res) => {
 
 app.get('/Headers', (req, res) => {
     let ua = req.get('User-Agent')
-    let ref = req.headers.referer
+    let ref = req.headers.referer || ''
     res.render('pages/Headers/index.ejs', {
         ua: ua,
         ref: ref
@@ -286,6 +286,42 @@ app.post('/SQL-Dump', (req, res) => {
                 totalRows: rows.length,
                 name: rows,
                 desc: rows,
+            })
+        }
+    })
+    
+})
+
+
+//Union 
+app.get('/Union', (req, res) => {
+
+    res.render('pages/Union/index.ejs', {
+        totalRows: 0,
+        name: "",
+        desc: "",
+    })
+
+})
+
+app.post('/Union', (req, res) => {
+
+    keyword = req.body.keyword;
+
+    if(keyword.includes("from flags") || keyword.includes("from cakes")) {
+        res.send("Nah, you don't touch that table, go <a href='/Union'> back </a> ")
+    }
+    
+    connection.query("SELECT * FROM products WHERE id = " + keyword, function(err, rows, fields) {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render('pages/Union/index.ejs', {
+                totalRows: rows.length,
+                name: rows,
+                desc: rows,
+                price: rows
             })
         }
     })
