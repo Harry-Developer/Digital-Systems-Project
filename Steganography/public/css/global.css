@@ -4,8 +4,8 @@ body {
 }
 
 /* Scoreboard */
-.scoreboard > h4 { margin: 10px 0px 0px 0px}
-
+.scoreboard > h4 { margin: 10px 0px 10px 0px}
+.scoreboard > a {margin: 10px 0px 10px 0px}
 /* Card Stylings  */
 
 .card { 
