@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/add-challenge.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title> Website Name </title>
+</head>
+<body>
+
+    <%- include("../partials/header.ejs") %>
+
+    <div class="challenges">
+
+        <div class="container">
+
+
+            <% if (added) { %>
+                <div class="alert alert-success flag-card-message" role="alert">
+                    Challenge added.
+                </div>
+            <% } %>
+
+            <form action="/add-challenge" class="add-challenge-form" method="POST">
+                <div class="form-group">
+                    <label> Challenge name: </label>
+                    <input type="text" class="form-control" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label> Challenge description: </label>
+                    <input type="text" class="form-control" name="description">
+                </div>
+
+
+                <div class="form-group">
+                    <label> Challenge points: </label>
+                    <input type="text" class="form-control" name="points">
+                </div>
+
+                <div class="form-group">
+                    <label> Challenge difficulty: </label>
+                    <input type="text" class="form-control" name="difficulty">
+                </div>
+
+                <div class="form-group">
+                    <label> Challenge filename: </label>
+                    <input type="text" class="form-control" name="filename">
+                </div>
+
+                <div class="form-group">
+                    <label> Challenge flag: </label>
+                    <input type="text" class="form-control" name="flag">
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary">Add Challenge </button>
+            </form>
+            </form>
+        </div>
+
+    </div>
+
+    
+
+    <%- include("../partials/footer.ejs") %>
+
+</body>
+</html>

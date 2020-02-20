@@ -62,6 +62,7 @@ app.post('/flag-submit', (req, res) => {
 //Reset Challenges 
 
 app.post('/reset-challenges', (req, res) => {
+    
     connection.query('UPDATE challenges SET completed = 0 WHERE completed = 1 and type = ?', [challengeType], function(error, results){
         if (error){ console.log(error) }
     })
@@ -72,6 +73,49 @@ app.post('/reset-challenges', (req, res) => {
 
     res.redirect('/')
  })
+
+app.get('/add-challenge', (req, res) => {
+    res.render('pages/add-challenge.ejs', {added: false})
+})
+
+
+app.post('/add-challenge', (req, res) => {
+
+    var name = req.body.name
+    var description = req.body.description
+    var points = req.body.points
+    var difficulty = req.body.difficulty
+    var completed = 0;
+    var url = '/'
+    var type = 'Steg'
+    var flag = req.body.flag
+
+    var filename = req.body.filename
+    
+    var challenge = {
+        name: name, 
+        description: description, 
+        points: points, 
+        difficulty: difficulty, 
+        completed: completed,
+        url: url,
+        type: type,
+        filename: filename
+    }
+    
+    connection.query('INSERT INTO challenges SET ?', challenge, function (error, results, fields) {
+        if (error) throw error;
+    });
+
+    var flagInput = {flag: flag, challenge: name}
+
+    connection.query('INSERT INTO Flags SET ?', flagInput, function (error, results, fields) {
+        if (error) throw error;
+    });
+
+    res.render('pages/add-challenge.ejs', {added: true})
+    
+})
 
  app.listen(port, () => {
     console.log(`Server running on port ${port}!`)
