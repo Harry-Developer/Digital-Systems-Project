@@ -35,7 +35,7 @@ app.use(express.static(__dirname + '/public'));
 // index page
 app.get('/', (req, res) => {
     authenticated = false;
-    connection.query("SELECT * FROM challenges INNER JOIN Score ORDER BY points", function(err, rows, fields) {
+    connection.query("SELECT * FROM challenges INNER JOIN Score WHERE type != 'Steg' ORDER BY points", function(err, rows, fields) {
        
         if(err){
             console.log(err)
